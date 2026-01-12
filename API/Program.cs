@@ -16,15 +16,16 @@ builder.Services.AddDbContext<StoreContext>(x =>
 var app = builder.Build();
 using var scope = app.Services.CreateScope();
 var serviceProvider = scope.ServiceProvider;
+    var logger = serviceProvider.GetRequiredService<ILogger<Program>>();
 
 try
 {
     var context = serviceProvider.GetRequiredService<StoreContext>();
-    context.Database.Migrate();
+    await context.Database.MigrateAsync();
+    await StoreContextSeed.SeedAsync(context, logger) ;
 }
 catch (Exception e)
 {
-    var logger = serviceProvider.GetRequiredService<ILogger<Program>>();
     logger.LogError(e, "An error occurred seeding the DB.");
 }
 
@@ -57,7 +58,7 @@ app.MapGet("/weatherforecast", () =>
 .WithName("GetWeatherForecast")
 .WithOpenApi();
 
-app.Run();
+await app.RunAsync();
 
 record WeatherForecast(DateOnly Date, int TemperatureC, string? Summary)
 {
