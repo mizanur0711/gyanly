@@ -14,6 +14,19 @@ builder.Services.AddDbContext<StoreContext>(x =>
 );
 
 var app = builder.Build();
+using var scope = app.Services.CreateScope();
+var serviceProvider = scope.ServiceProvider;
+
+try
+{
+    var context = serviceProvider.GetRequiredService<StoreContext>();
+    context.Database.Migrate();
+}
+catch (Exception e)
+{
+    var logger = serviceProvider.GetRequiredService<ILogger<Program>>();
+    logger.LogError(e, "An error occurred seeding the DB.");
+}
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
