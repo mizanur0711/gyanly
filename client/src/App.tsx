@@ -4,6 +4,8 @@ import HomePage from './pages/HomePage';
 import DetailPage from './pages/DetailPage';
 import LoginPage from './pages/Login';
 import Navigation from './components/Navigation';
+import "antd/dist/antd.css"
+
 function App() {
 
   return (

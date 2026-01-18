@@ -1,6 +1,9 @@
 import React from "react";
+import Courses from "../components/Courses";
 const HomePage = () => {
-    return <h1>Home Page</h1>;
+    return <div>
+        <Courses/>
+    </div>;
 }
 
 export default HomePage;
