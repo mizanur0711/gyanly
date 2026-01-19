@@ -49,7 +49,6 @@ const Courses = () => {
         <div className="course">
             <div className="course__header">
                 <h1>What to Learn Next?</h1>
-                <h2>New Courses picked just for you...</h2>
             </div>
             <Row gutter={[24, 32]}>
                 {courses.map((course: Course, index: number) => {
