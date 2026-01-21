@@ -4,6 +4,7 @@ import Logo from '../assets/logo.png'
 
 const Navigation = () => {
     const [sidebar, setSidebar] = useState(false)
+    const [activePage, setActivePage] = useState('Categories')
 
     const showSidebar = () => setSidebar(!sidebar)
 
@@ -28,8 +29,20 @@ const Navigation = () => {
                     <img src={Logo} className="nav__left__logo" alt="logo" />
 
                     <ul className="nav__left__list">
-                        <li className="nav__left__list__item">Categories</li>
-                        <li className="nav__left__list__item">Courses</li>
+                        <li
+                            className={`nav__left__list__item ${activePage === 'Categories' ? 'active' : ''
+                                }`}
+                            onClick={() => setActivePage('Categories')}
+                        >
+                            Categories
+                        </li>
+                        <li
+                            className={`nav__left__list__item ${activePage === 'Courses' ? 'active' : ''
+                                }`}
+                            onClick={() => setActivePage('Courses')}
+                        >
+                            Courses
+                        </li>
                     </ul>
                 </div>
                 <div className="nav__right">
