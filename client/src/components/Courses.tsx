@@ -62,7 +62,7 @@ const Courses = () => {
                                 }
                             >
                                 <div className="course__title">{course.title} </div>
-                                <div >{course.description.slice(0,10)} </div>
+                                <div >{course.description.slice(0,20)} </div>
                                 <div className="course__instructor">{course.instructor} </div>
                                 <div className="course__rating">
                                     {course.rating}
