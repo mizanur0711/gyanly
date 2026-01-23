@@ -1,17 +1,16 @@
 using Entity;
-using Infrastructure;
+using Entity.Interfaces;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 
 namespace API.Controller;
 
 public class CoursesController : BaseController
 {
-    private readonly StoreContext _context;
+    private readonly ICourseRepository _repository;
 
-    public CoursesController(StoreContext context)
+    public CoursesController(ICourseRepository repository)
     {
-        _context = context;
+        _repository = repository;
     }
 
     [HttpGet]
@@ -19,12 +18,13 @@ public class CoursesController : BaseController
     public async Task<ActionResult<List<Course>>> getCourses()
     {
 
-        return await _context.Courses.ToListAsync();
+        var courses =  await _repository.GetCourseAsync();
+        return Ok(courses);
     }
 
     [HttpGet("{id}")]
     public async Task<ActionResult<Course>> GetCourse(Guid id)
     {
-        return await _context.Courses.FindAsync(id);
+        return await _repository.GetCourseByIdAsync(id);
     }
 }
