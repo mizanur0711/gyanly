@@ -1,3 +1,5 @@
+using System.Collections;
+
 namespace Entity;
 
 public class Course :  BaseEntity
@@ -10,5 +12,8 @@ public class Course :  BaseEntity
     public string Image { get; set; }
     public string SubTitle { get; set; } 
     public int Students { get; set; }
+    public string Language { get; set; }
+    public string Level { get; set; }
+    public ICollection<Requirement> Requirements { get; set; }
     
 }
