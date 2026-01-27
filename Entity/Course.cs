@@ -15,5 +15,9 @@ public class Course :  BaseEntity
     public string Language { get; set; }
     public string Level { get; set; }
     public ICollection<Requirement> Requirements { get; set; }
+    public ICollection<Learning> Learnings { get; set; }
+    public int CategoryId { get; set; }
+    public Category Category { get; set; }
+    public DateTime LastUpdated { get; set; } =  DateTime.Now;
     
 }
