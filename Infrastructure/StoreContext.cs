@@ -1,3 +1,4 @@
+using System.Reflection;
 using Entity;
 using Microsoft.EntityFrameworkCore;
 
@@ -13,4 +14,10 @@ public class StoreContext : DbContext
     public DbSet<Learning>  Learnings { get; set; }
     public DbSet<Requirement>  Requirements { get; set; }
 
+    protected override void OnModelCreating(ModelBuilder builder)
+    {
+        base.OnModelCreating(builder);
+
+        builder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
+    }
 }
