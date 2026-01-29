@@ -11,7 +11,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Infrastructure.Migrations
 {
     [DbContext(typeof(StoreContext))]
-    [Migration("20260128175506_CourseConfigurations")]
+    [Migration("20260129164854_CourseConfigurations")]
     partial class CourseConfigurations
     {
         /// <inheritdoc />
@@ -32,7 +32,7 @@ namespace Infrastructure.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Category");
+                    b.ToTable("Categories");
                 });
 
             modelBuilder.Entity("Entity.Course", b =>
