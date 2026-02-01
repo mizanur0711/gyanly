@@ -1,6 +1,9 @@
 namespace Entity.Interfaces;
 
-public class ICategory
+public interface ICategoryRepository
 {
+    Task<IReadOnlyList<Category>> GetCategoriesAsync();
+
+    Task<Category> GetCategoriesByIdAsync(int id);
     
 }
