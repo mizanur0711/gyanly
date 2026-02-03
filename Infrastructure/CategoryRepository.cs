@@ -15,14 +15,13 @@ public class CategoryRepository : ICategoryRepository
 
     public async Task<IReadOnlyList<Category>> GetCategoriesAsync()
     {
-        return await _context.Categories
-            .Include(c => c.Courses)
-            .ToListAsync();
+        return await _context.Categories.ToListAsync();
     }
 
     public async Task<Category> GetCategoriesByIdAsync(int id)
     {
-        return await _context.Categories
+        return await _context
+            .Categories
             .Include(c => c.Courses)
             .FirstOrDefaultAsync(x => x.Id == id);
     }
