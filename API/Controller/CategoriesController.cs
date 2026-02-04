@@ -6,9 +6,10 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace API.Controller;
 
-public class CategoryController : BaseController
+public class CategoriesController : BaseController
 {
     private readonly ICategoryRepository _repository;
+
     private readonly IMapper _mapper;
 
     public CategoriesController(

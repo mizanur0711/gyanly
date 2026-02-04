@@ -22,7 +22,7 @@ public class CourseRepository : ICourseRepository
             .Include(c => c.Learnings)
             .FirstOrDefaultAsync(x => x.Id == id);    }
 
-    public async Task<IReadOnlyList<Course>> GetCourseAsync()
+    public async Task<IReadOnlyList<Course>> GetCoursesAsync()
     {
         return await _context
             .Courses
