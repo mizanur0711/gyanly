@@ -29,7 +29,6 @@ public class CoursesController : BaseController
     public async Task<ActionResult<CourseDto>> GetCourse(Guid id)
     {
         var course = await _repository.GetCourseByIdAsync(id);
-
         return _mapper.Map<Course, CourseDto>(course);
     }
 }
