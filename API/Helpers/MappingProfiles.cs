@@ -13,11 +13,8 @@ public class MappingProfiles : Profile
                 o => o.MapFrom(s => s.Category.Name));
 
         CreateMap<Learning, LearningDto>();
-
         CreateMap<Requirement, RequirementDto>();
-
         CreateMap<Category, CategoryDto>();
-
         CreateMap<Category, CategoriesDto>();
     }
 }
