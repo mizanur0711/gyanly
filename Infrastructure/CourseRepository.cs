@@ -20,7 +20,8 @@ public class CourseRepository : ICourseRepository
             .Include(c => c.Category)
             .Include(c => c.Requirements)
             .Include(c => c.Learnings)
-            .FirstOrDefaultAsync(x => x.Id == id);    }
+            .FirstOrDefaultAsync(x => x.Id == id);
+    }
 
     public async Task<IReadOnlyList<Course>> GetCoursesAsync()
     {

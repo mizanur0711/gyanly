@@ -9,7 +9,6 @@ namespace API.Controller;
 public class CategoriesController : BaseController
 {
     private readonly ICategoryRepository _repository;
-
     private readonly IMapper _mapper;
 
     public CategoriesController(
