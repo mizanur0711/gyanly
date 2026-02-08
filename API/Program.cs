@@ -8,15 +8,12 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 builder.Services.AddScoped<ICourseRepository, CourseRepository>();
 builder.Services.AddScoped<ICategoryRepository, CategoryRepository>();
-builder.Services.AddAutoMapper(cfg => {}, typeof(MappingProfiles).Assembly);
+builder.Services.AddAutoMapper(cfg => { }, typeof(MappingProfiles).Assembly);
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
-builder.Services.AddDbContext<StoreContext>(x =>
-    {
-        x.UseSqlite("Data Source=gyanly.db");
-    }
+builder.Services.AddDbContext<StoreContext>(x => { x.UseSqlite("Data Source=gyanly.db"); }
 );
 
 builder.Services.AddCors(options =>
@@ -31,13 +28,13 @@ builder.Services.AddCors(options =>
 var app = builder.Build();
 using var scope = app.Services.CreateScope();
 var serviceProvider = scope.ServiceProvider;
-    var logger = serviceProvider.GetRequiredService<ILogger<Program>>();
+var logger = serviceProvider.GetRequiredService<ILogger<Program>>();
 
 try
 {
     var context = serviceProvider.GetRequiredService<StoreContext>();
     await context.Database.MigrateAsync();
-    await StoreContextSeed.SeedAsync(context, logger) ;
+    await StoreContextSeed.SeedAsync(context, logger);
 }
 catch (Exception e)
 {
@@ -62,19 +59,19 @@ var summaries = new[]
 };
 
 app.MapGet("/weatherforecast", () =>
-{
-    var forecast =  Enumerable.Range(1, 5).Select(index =>
-        new WeatherForecast
-        (
-            DateOnly.FromDateTime(DateTime.Now.AddDays(index)),
-            Random.Shared.Next(-20, 55),
-            summaries[Random.Shared.Next(summaries.Length)]
-        ))
-        .ToArray();
-    return forecast;
-})
-.WithName("GetWeatherForecast")
-.WithOpenApi();
+    {
+        var forecast = Enumerable.Range(1, 5).Select(index =>
+                new WeatherForecast
+                (
+                    DateOnly.FromDateTime(DateTime.Now.AddDays(index)),
+                    Random.Shared.Next(-20, 55),
+                    summaries[Random.Shared.Next(summaries.Length)]
+                ))
+            .ToArray();
+        return forecast;
+    })
+    .WithName("GetWeatherForecast")
+    .WithOpenApi();
 
 await app.RunAsync();
 
