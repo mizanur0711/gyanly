@@ -8,23 +8,23 @@ namespace API.Controller;
 
 public class CategoriesController : BaseController
 {
-    private readonly ICategoryRepository _repository;
+    private readonly IGenericRepository<Category> _repository;
     private readonly IMapper _mapper;
 
     public CategoriesController(
-        ICategoryRepository repository,
+        IGenericRepository<Category> repository,
         IMapper mapper
     )
     {
-        _mapper = mapper;
         _repository = repository;
+        _mapper = mapper;
     }
 
     [HttpGet]
     public async Task<ActionResult<IReadOnlyList<CategoriesDto>>>
         GetCategories()
     {
-        var categories = await _repository.GetCategoriesAsync();
+        var categories = await _repository.ListAllAsync();
 
         return Ok(_mapper
             .Map
@@ -35,7 +35,7 @@ public class CategoriesController : BaseController
     [HttpGet("{id}")]
     public async Task<ActionResult<CategoryDto>> GetCategory(int id)
     {
-        var category = await _repository.GetCategoryByIdAsync(id);
+        var category = await _repository.GetByIdAsync(id);
 
         return _mapper.Map<Category, CategoryDto>(category);
     }
