@@ -2,7 +2,7 @@ using API.Dto;
 using AutoMapper;
 using Entity;
 using Entity.Interfaces;
-using Microsoft.AspNetCore.Mvc; 
+using Microsoft.AspNetCore.Mvc;
 
 namespace API.Controller;
 

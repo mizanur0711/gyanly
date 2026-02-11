@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Infrastructure;
 
-public class GenericRepository<T> : IGenericRepository<T>  where T : class
+public class GenericRepository<T> : IGenericRepository<T> where T : class
 {
     private readonly StoreContext _context;
 
@@ -19,6 +19,6 @@ public class GenericRepository<T> : IGenericRepository<T>  where T : class
 
     public async Task<T> GetByIdAsync(dynamic id)
     {
-        return await  _context.Set<T>().FindAsync(id);
+        return await _context.Set<T>().FindAsync(id);
     }
 }
