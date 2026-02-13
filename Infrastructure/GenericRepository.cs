@@ -6,7 +6,6 @@ namespace Infrastructure;
 public class GenericRepository<T> : IGenericRepository<T> where T : class
 {
     private readonly StoreContext _context;
-
     public GenericRepository(StoreContext context)
     {
         _context = context;
