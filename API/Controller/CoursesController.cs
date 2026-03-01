@@ -2,6 +2,7 @@ using API.Dto;
 using AutoMapper;
 using Entity;
 using Entity.Interfaces;
+using Entity.Specifications;
 using Microsoft.AspNetCore.Mvc;
 
 namespace API.Controller;
@@ -20,7 +21,9 @@ public class CoursesController : BaseController
     [HttpGet]
     public async Task<ActionResult<List<CourseDto>>> GetCourses()
     {
-        var courses = await _repository.ListAllAsync();
+        var spec = new CoursesWithCategoriesSpecification();
+
+        var courses = await _repository.ListWithSpec(spec);
         return Ok(_mapper
             .Map<IReadOnlyList<Course>, IReadOnlyList<CourseDto>>(courses));
     }
@@ -28,7 +31,9 @@ public class CoursesController : BaseController
     [HttpGet("{id}")]
     public async Task<ActionResult<CourseDto>> GetCourse(Guid id)
     {
-        var course = await _repository.GetByIdAsync(id);
+        var spec = new CoursesWithCategoriesSpecification(id);
+
+        var course = await _repository.GetEntityWithSpec(spec);
         return _mapper.Map<Course, CourseDto>(course);
     }
 }
